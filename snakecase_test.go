@@ -1,7 +1,6 @@
-package snakecase_test
+package snakecase
 
 import (
-	"github.com/azer/snakecase"
 	"strings"
 	"testing"
 )
@@ -21,6 +20,7 @@ var tests = []SnakeTest{
 	{"SnakeTest", "snake_test"},
 	{"APIResponse", "api_response"},
 	{"SnakeID", "snake_id"},
+	{"Snake_Id", "snake_id"},
 	{"SnakeIDGoogle", "snake_id_google"},
 	{"LinuxMOTD", "linux_motd"},
 	{"OMGWTFBBQ", "omgwtfbbq"},
@@ -29,8 +29,8 @@ var tests = []SnakeTest{
 
 func TestSnakeCase(t *testing.T) {
 	for _, test := range tests {
-		if snakecase.SnakeCase(test.input) != test.output {
-			t.Errorf(`SnakeCase("%s"), wanted "%s", got \%s"`, test.input, test.output, snakecase.SnakeCase(test.input))
+		if SnakeCase(test.input) != test.output {
+			t.Errorf(`SnakeCase("%s"), wanted "%s", got \%s"`, test.input, test.output, SnakeCase(test.input))
 		}
 	}
 }
@@ -51,7 +51,7 @@ var benchmarks = []string{
 func BenchmarkSnakeCase(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, input := range benchmarks {
-			snakecase.SnakeCase(input)
+			SnakeCase(input)
 		}
 	}
 }
